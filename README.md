@@ -110,6 +110,12 @@ path_a , cost_a  = a_star(graph, start, end)
 
 ![image](https://github.com/imalhotra15/Graph-Planning/assets/118845522/f275edad-13b0-4218-ad82-b0ae710750e1)
 
+![image](https://github.com/imalhotra15/Graph-Planning/assets/118845522/c1ad1a07-9ef4-49f3-b28e-aa1e8faf6ff4)
+
+Sample Path Output: 
+[(38, 5), (37, 6), (36, 7), (35, 8), (34, 9), (34, 10), (34, 11), (34, 12), (34, 13), (34, 14), (34, 15), (34, 16), (34, 17), (34, 18), (34, 19), (33, 20), (32, 21), (31, 22), (30, 23), (29, 24), (28, 25), (27, 26), (26, 27), (25, 28), (24, 29), (23, 29), (22, 29), (21, 29), (20, 30)] 
+
+As seen from the above examples, the cost of both the paths calculated is similar (same in this case). However the computation time/ number of iterations required for A* would be much lesser.
 
 ## Notes
 
