@@ -78,11 +78,11 @@ flowchart TD
     A(Start) --> B{Valid Start/End?}
     B -- Yes --> C[Initialize maps]
     C --> D{Goal Found?}
-    D -- No --> nodes_interest{Find nodes with min cost}
+    D -- No --> nodes_interest{Find interested nodes}
     nodes_interest --> valid_neighbours{Find valid neighbours}
     valid_neighbours --> close_node[Close Node]
-    close_node --> cost_neighbours{Find neighbours with non-infinite costs}
-    cost_neighbours --> update[Update costs]
+    close_node --> cost_neighbours{Find cost neighbours}
+    cost_neighbours --> update[Update Costs and Parents]
     update --> cost_neighbours
     cost_neighbours --> valid_neighbours
     valid_neighbours --> nodes_interest
@@ -93,6 +93,21 @@ flowchart TD
     K --> J
     J -- Yes --> L(Return Path & Cost)
 ```
+<ins> **Terminologies:** </ins>
+
+- **Interested Node:** 
+Nodes with the minimum cost among the open nodes
+
+- **Valid Neighbours:** 
+Neighboring nodes that are not obstacles or already closed.
+
+- **Cost Neighbours:** 
+Neighboring nodes with known costs.
+
+- **Update Costs and Parents:**   
+Calculates costs for valid neighbors by considering costs from known neighboring nodes.
+Updates the cost of reaching valid_neighbour based on the minimum cost from cost_neighbours.
+Updates the parent node of valid_neighbour based on the neighboring node that provides the minimum cost path.
 
 ## Demo
 
