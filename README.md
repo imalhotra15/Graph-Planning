@@ -17,60 +17,60 @@ The path reconstruction uses the parent_map to backtrack from the goal node to t
 
 **1. Initialization:**
 
-Check for valid start and end nodes and ensure they are not obstacles.
-Create necessary maps: cost_map, open_close_map, and parent_map.
-Initialize cost_map with high costs (1000.0), marking all nodes as unvisited.
-Set the cost of the start node to 0 in cost_map.
-Mark the start node as open in open_close_map.
+- Check for valid start and end nodes and ensure they are not obstacles.
+- Create necessary maps: cost_map, open_close_map, and parent_map.
+- Initialize cost_map with high costs (1000.0), marking all nodes as unvisited.
+- Set the cost of the start node to 0 in cost_map.
+- Mark the start node as open in open_close_map.
 
 **2. Main Loop (Goal Search):**
 
-Enter a while loop that continues until the goal node is found.
-Find the node with the minimum cost among the open nodes (nodes_interest).
-Mark this node as closed in open_close_map.
-Get valid neighbors of this node that are not obstacles and not already closed.
-For each valid neighbor:
-Mark it as open in open_close_map.
-Determine its cost-neighbors (neighbors with known costs).
-Update costs and parents of valid neighbors based on the neighboring costs.
-If the goal node becomes closed, exit the loop (goal found).
+- Enter a while loop that continues until the goal node is found.
+- Find the node with the minimum cost among the open nodes (nodes_interest).
+- Mark this node as closed in open_close_map.
+- Get valid neighbors of this node that are not obstacles and not already closed.
+- For each valid neighbor:
+- Mark it as open in open_close_map.
+- Determine its cost-neighbors (neighbors with known costs).
+- Update costs and parents of valid neighbors based on the neighboring costs.
+- If the goal node becomes closed, exit the loop (goal found).
 
 **3. Path Reconstruction:**
 
-Begin path reconstruction by setting node as the end node.
-Insert the end node into the path list.
-Retrieve the total cost by accessing the cost of the end node in cost_map.
-Trace back through the parent_map to reconstruct the path:
-Insert each node's parent into the path list until the start node is reached.
+- Begin path reconstruction by setting node as the end node.
+- Insert the end node into the path list.
+- Retrieve the total cost by accessing the cost of the end node in cost_map.
+- Trace back through the parent_map to reconstruct the path:
+- Insert each node's parent into the path list until the start node is reached.
 
 **4. Return:**
 
-Return the path (list of coordinates) representing the shortest path from start to end.
-Return the cost representing the total cost of the path.
+- Return the path (list of coordinates) representing the shortest path from start to end.
+- Return the cost representing the total cost of the path.
 
 **Difference from A star:**
 
-The major difference between Dijkstra's algorithm and A* lies in their approach to node exploration and cost evaluation, primarily in the main loop (Goal Search) phase.
+- The major difference between Dijkstra's algorithm and A* lies in their approach to node exploration and cost evaluation, primarily in the main loop (Goal Search) phase.
 
-In A*, the modification occurs in the evaluation of the cost function, which combines the actual cost from the start node (g(n)) and a heuristic estimate to the goal node (h(n)). This addition of the heuristic value modifies the way nodes are prioritized for exploration compared to Dijkstra's algorithm.
+- In A*, the modification occurs in the evaluation of the cost function, which combines the actual cost from the start node (g(n)) and a heuristic estimate to the goal node (h(n)). This addition of the heuristic value modifies the way nodes are prioritized for exploration compared to Dijkstra's algorithm.
 
 **Main Loop (Goal Search) for A star:**
 
 **Cost Evaluation:**
 
-Instead of just considering the accumulated cost from the start (g(n)), A* evaluates a combined cost function f(n) = g(n) + h(n) for each node.
-g(n): Represents the cost of the path from the start node to the current node.
-h(n): Heuristic estimation of the cost from the current node to the goal node.
-f(n): Combined cost function that prioritizes nodes based on their estimated total cost from the start to the goal, considering both actual and estimated costs.
+- Instead of just considering the accumulated cost from the start (g(n)), A* evaluates a combined cost function f(n) = g(n) + h(n) for each node.
+- g(n): Represents the cost of the path from the start node to the current node.
+- h(n): Heuristic estimation of the cost from the current node to the goal node.
+- f(n): Combined cost function that prioritizes nodes based on their estimated total cost from the start to the goal, considering both actual and estimated costs.
 
 **Node Selection:**
 
-Select the node with the minimum f(n) value among the open nodes instead of only considering the actual cost (g(n)) as in Dijkstra's algorithm.
-Prioritize nodes based on the f(n) value, balancing the actual cost and the estimated cost to the goal.
+- Select the node with the minimum f(n) value among the open nodes instead of only considering the actual cost (g(n)) as in Dijkstra's algorithm.
+- Prioritize nodes based on the f(n) value, balancing the actual cost and the estimated cost to the goal.
 
 **Path Update:**
 
-Update costs and parents similar to Dijkstra's but considering the modified cost function f(n) for each node.
+- Update costs and parents similar to Dijkstra's but considering the modified cost function f(n) for each node.
 
 ```mermaid
 
